@@ -1,11 +1,11 @@
 const express = require('express')
-const TemperatureData = require('../models/temperature')
+const Temperature = require('../models/temperature')
 
 const router = new express.Router()
 
 router.get('/temperatures', async (req, res)  => {
     try {
-        const data = await TemperatureData.find({})
+        const data = await Temperature.find({})
         res.send({"data": data})
     } catch (e) {
         res.status(503).send(e)
@@ -13,17 +13,17 @@ router.get('/temperatures', async (req, res)  => {
 })
 
 router.post('/temperatures', async (req, res) => {
-    const allowedFields =  ['value', 'unit', 'timestamp', 'source']
+    const allowedFields =  ['value', 'unit', 'source']
     const requestFields = Object.keys(req.body)
     const isValidOperation = requestFields.every((field) => allowedFields.includes(field))
     if (!isValidOperation) {
         return res.status(400).send({ error: "Invalid parameters"})
     }
     
-    const temperatureData = new TemperatureData(req.body)
+    const temperature = new Temperature(req.body)
     try {
-        await temperatureData.save()
-        res.status(201).send(temperatureData)
+        await Temperature.save()
+        res.status(201).send(temperature)
     } catch (e) {
         res.status(400).send(e)
     }

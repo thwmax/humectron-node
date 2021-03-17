@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const TemperatureData = mongoose.model('TemperatureData', {
+const temperatureSchema = new mongoose.Schema({
 	value: {
 		type: Number,
 		required: true
@@ -9,9 +9,10 @@ const TemperatureData = mongoose.model('TemperatureData', {
 		type: String,
 		required: true,
 		lowercase: true,
+		trim: true,
 		enum: ['c', 'f', 'k']
 	},
-	timestamp: {
+	created_at: {
 		type: Date,
 		default: Date.now
 	},
@@ -19,8 +20,8 @@ const TemperatureData = mongoose.model('TemperatureData', {
 		type: String,
 		required: true,
 		trim: true,
-		uppercase: true
 	}
 })
+const Temperature = mongoose.model('Temperature', temperatureSchema)
 
-module.exports = TemperatureData
+module.exports = Temperature
