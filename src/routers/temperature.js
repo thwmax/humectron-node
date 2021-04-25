@@ -22,9 +22,10 @@ router.post('/temperatures', async (req, res) => {
     
     const temperature = new Temperature(req.body)
     try {
-        await Temperature.save()
+        await temperature.save()
         res.status(201).send(temperature)
     } catch (e) {
+        console.log(e)
         res.status(400).send(e)
     }
 })
