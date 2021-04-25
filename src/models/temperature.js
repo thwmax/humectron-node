@@ -12,15 +12,13 @@ const temperatureSchema = new mongoose.Schema({
 		trim: true,
 		enum: ['c', 'f', 'k']
 	},
-	created_at: {
-		type: Date,
-		default: Date.now
-	},
 	source: {
 		type: String,
 		required: true,
 		trim: true,
 	}
+}, {
+	timestamps: true
 })
 const Temperature = mongoose.model('Temperature', temperatureSchema)
 
