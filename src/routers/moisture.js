@@ -1,5 +1,5 @@
 const express = require('express')
-const Temperature = require('../models/moisture')
+const Moisture = require('../models/moisture')
 
 const router = new express.Router()
 
