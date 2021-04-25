@@ -13,6 +13,6 @@ const moistureSchema = new mongoose.Schema({
 }, {
 	timestamps: true
 })
-const Moisture = mongoose.model('Moisture', temperatureSchema)
+const Moisture = mongoose.model('Moisture', moistureSchema)
 
 module.exports = Moisture
